@@ -2,69 +2,89 @@ package tests;
 
 import endpoints.UserEndpoints;
 import io.qameta.allure.Description;
-import io.restassured.http.ContentType;
-import org.hamcrest.Matchers;
+import io.qameta.allure.Step;
+import models.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import specs.CustomSpec;
+import testData.TestData;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static specs.CustomSpec.*;
 
 public class PostUserTests extends TestBase {
 
     @Test
     @Description("Отправка POST запроса и создание пользователя")
     @DisplayName("Проверка успешного создания нового пользователя")
+    @Step("Отправка запроса на создание нового пользователя")
     void createUserTestPositive() {
-        given()
-                .log().all()
-                .contentType(ContentType.JSON)
-                .body(Constants.validCreateData)
+
+        CreateUserResponse response = given(CustomSpec.requestSpec)
+                .body(TestData.validCreateData)
                 .when()
                 .post(UserEndpoints.CREATE_USER.getEndpoint())
                 .then()
-                .log().all()
-                .statusCode(201)
-                .body("name", equalTo("Mark"))
-                .body("job", equalTo("QA"));
+                .spec(responseSpec201)
+                .extract().as(CreateUserResponse.class);
+
+        checkCreateUserResponse(response);
+    }
+
+    @Step("Проверка успешного создания пользователя")
+    private void checkCreateUserResponse(CreateUserResponse response) {
+        assertThat(response.getName()).isEqualTo(TestData.expectedName);
+        assertThat(response.getJob()).isEqualTo(TestData.expectedJob);
+        assertThat(response.getId()).isNotNull();
+        assertThat(response.getCreatedAt()).isNotNull();
     }
 
     @Test
     @Description("Отправка POST запроса и регистрация нового пользователя")
     @DisplayName("Проверка успешной регистрации нового пользователя")
+    @Step("Отправка запроса на регистрацию нового пользователя")
     void registerNewUserSuccess() {
-        given()
-                .log().all()
-                .contentType(ContentType.JSON)
-                .body(Constants.validRegisterData)
+
+        RegisterUserResponse response = given(CustomSpec.requestSpec)
+                .body(TestData.validRegisterData)
                 .when()
                 .post(UserEndpoints.REGISTER_USER.getEndpoint())
                 .then()
-                .log().all()
-                .statusCode(200)
-                .body("id", notNullValue())
-                .body("token", Matchers.is(Matchers.notNullValue()))
-                .body("token.length()", Matchers.is(Matchers.greaterThanOrEqualTo(17)))
-                .body("token", Matchers.is(Matchers.matchesRegex("\\S[a-zA-Z0-9]*\\S")));
+                .spec(responseSpec200)
+                .extract().as(RegisterUserResponse.class);
+
+        checkRegisterUserResponse(response);
+    }
+
+    @Step("Проверка успешной регистрации пользователя")
+    private void checkRegisterUserResponse(RegisterUserResponse response) {
+        assertThat(response.getId()).isNotNull();
+        assertThat(response.getToken()).isNotNull();
+        assertThat(response.getToken().length()).isGreaterThanOrEqualTo(17);
+        assertThat(response.getToken()).matches("\\S[a-zA-Z0-9]*\\S");
     }
 
     @Test
     @Description("Отправка POST запроса и регистрация нового пользователя")
     @DisplayName("Проверка ошибки при попытке зарегистрировать пользователя без пароля")
+    @Step("Отправка запроса на регистрацию нового пользователя без пароля")
     void registerNewUserNegative() {
-        given()
-                .log().all()
-                .contentType(ContentType.JSON)
-                .body(Constants.inValidRegisterData)
+
+        ErrorResponse response = given(CustomSpec.requestSpec)
+                .body(TestData.invalidRegisterData)
                 .when()
                 .post(UserEndpoints.REGISTER_USER.getEndpoint())
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(400)
-                .body("error", is("Missing password"));
+                .spec(responseSpec400)
+                .extract().as(ErrorResponse.class);
+
+        checkErrorResponse(response);
+    }
+
+    @Step("Проверка ошибки в ответе при регистрации пользователя без пароля")
+    private void checkErrorResponse(ErrorResponse response) {
+        assertThat(response.getError()).isEqualTo(TestData.expectedErrorMessage);
     }
 
 }

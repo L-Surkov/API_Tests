@@ -4,6 +4,7 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import tests.TestBase;
+
 import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.filter.log.LogDetail.STATUS;
@@ -30,8 +31,8 @@ public class CustomSpec {
             .log(BODY)
             .build();
 
-    public static ResponseSpecification responseSpec204 = new ResponseSpecBuilder()
-            .expectStatusCode(204)
+    public static ResponseSpecification responseSpec400 = new ResponseSpecBuilder()
+            .expectStatusCode(400)
             .log(STATUS)
             .log(BODY)
             .build();

@@ -10,6 +10,7 @@ import models.UserSingleResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import specs.CustomSpec;
+import testData.TestData;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,7 +50,7 @@ public class GetUserTests extends TestBase {
     @Step("Запрос пользователя по id")
     void getUserByIdTest() {
         UserSingleResponse response = given(CustomSpec.requestSpec)
-                .pathParam("id", 4)
+                .pathParam("id", TestData.expectedUserId)
                 .when()
                 .get(UserEndpoints.SINGLE_USER.getEndpoint())
                 .then()
@@ -62,10 +63,10 @@ public class GetUserTests extends TestBase {
     @Step("Проверка отображения конкретного пользователя и всех параметров")
     private void checkUserById(UserSingleResponse response) {
         User user = response.getData();
-        assertThat(user.getId()).isEqualTo(4);
-        assertThat(user.getEmail()).isEqualTo("eve.holt@reqres.in");
-        assertThat(user.getFirstName()).isEqualTo("Eve");
-        assertThat(user.getLastName()).isEqualTo("Holt");
+        assertThat(user.getId()).isEqualTo(TestData.expectedUserId);
+        assertThat(user.getEmail()).isEqualTo(TestData.expectedUserEmail);
+        assertThat(user.getFirstName()).isEqualTo(TestData.expectedUserFirstName);
+        assertThat(user.getLastName()).isEqualTo(TestData.expectedUserLastName);
     }
 
     @Test
@@ -74,7 +75,7 @@ public class GetUserTests extends TestBase {
     @Step("Запрос пользователя по несуществующему id")
     void getNotFoundUserTest() {
         ErrorResponse response = given(CustomSpec.requestSpec)
-                .pathParam("id", 55)
+                .pathParam("id", TestData.invalidUserId)
                 .log().uri()
                 .when()
                 .get(UserEndpoints.SINGLE_USER.getEndpoint())
