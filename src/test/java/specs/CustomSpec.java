@@ -18,30 +18,13 @@ public class CustomSpec {
             .log().headers()
             .log().body()
             .contentType(JSON)
-            .filter(withCustomTemplates());;
+            .filter(withCustomTemplates());
 
-
-    public static ResponseSpecification responseSpec200 = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .log(STATUS)
-            .log(BODY)
-            .build();
-
-    public static ResponseSpecification responseSpec201 = new ResponseSpecBuilder()
-            .expectStatusCode(201)
-            .log(STATUS)
-            .log(BODY)
-            .build();
-
-    public static ResponseSpecification responseSpec400 = new ResponseSpecBuilder()
-            .expectStatusCode(400)
-            .log(STATUS)
-            .log(BODY)
-            .build();
-
-    public static ResponseSpecification responseSpec404 = new ResponseSpecBuilder()
-            .expectStatusCode(404)
-            .log(STATUS)
-            .log(BODY)
-            .build();
+    public static ResponseSpecification buildResponseSpec(int expectedStatusCode) {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(expectedStatusCode)
+                .log(STATUS)
+                .log(BODY)
+                .build();
+    }
 }

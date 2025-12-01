@@ -15,14 +15,12 @@ import testData.TestData;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
-import static specs.CustomSpec.responseSpec200;
-import static specs.CustomSpec.responseSpec404;
+import static specs.CustomSpec.buildResponseSpec;
 
 public class GetUserTests extends TestBase {
 
-
     @Test
-    @Description("Отправка GET запроса и вывод списка пользователей")
+    @Description("Отправка GET-запроса и вывод списка пользователей")
     @DisplayName("Проверка получения списка пользователей по номеру страницы")
     @Tag("ApiTests")
     @Step("Запрос списка пользователей по странице")
@@ -32,8 +30,7 @@ public class GetUserTests extends TestBase {
                 .when()
                 .get(UserEndpoints.LIST_USERS.getEndpoint())
                 .then()
-                .statusCode(200)
-                .spec(responseSpec200)
+                .spec(buildResponseSpec(200))
                 .extract().as(UserListResponse.class);
 
         checkListUsers(response);
@@ -45,19 +42,18 @@ public class GetUserTests extends TestBase {
         assertThat(response.getData()).hasSize(6);
     }
 
-
     @Test
-    @Description("Отправка GET запроса и вывод конкретного пользователя")
+    @Description("Отправка GET-запроса и вывод конкретного пользователя")
     @DisplayName("Получение конкретного пользователя по id")
     @Tag("ApiTests")
     @Step("Запрос пользователя по id")
     void getUserByIdTest() {
         UserSingleResponse response = given(CustomSpec.requestSpec)
-                .pathParam("id", TestData.expectedUserId)
+                .pathParam("id", TestData.getExpectedUserId())
                 .when()
                 .get(UserEndpoints.SINGLE_USER.getEndpoint())
                 .then()
-                .spec(responseSpec200)
+                .spec(buildResponseSpec(200))
                 .extract().as(UserSingleResponse.class);
 
         checkUserById(response);
@@ -66,25 +62,25 @@ public class GetUserTests extends TestBase {
     @Step("Проверка отображения конкретного пользователя и всех параметров")
     private void checkUserById(UserSingleResponse response) {
         User user = response.getData();
-        assertThat(user.getId()).isEqualTo(TestData.expectedUserId);
-        assertThat(user.getEmail()).isEqualTo(TestData.expectedUserEmail);
-        assertThat(user.getFirstName()).isEqualTo(TestData.expectedUserFirstName);
-        assertThat(user.getLastName()).isEqualTo(TestData.expectedUserLastName);
+        assertThat(user.getId()).isEqualTo(TestData.getExpectedUserId());
+        assertThat(user.getEmail()).isEqualTo(TestData.getExpectedUserEmail());
+        assertThat(user.getFirstName()).isEqualTo(TestData.getExpectedUserFirstName());
+        assertThat(user.getLastName()).isEqualTo(TestData.getExpectedUserLastName());
     }
 
     @Test
-    @Description("Отправка GET запроса с id несуществующего пользователя")
+    @Description("Отправка GET-запроса с id несуществующего пользователя")
     @DisplayName("Проверка корректной ошибки в ответе, если пользователь не найден")
     @Tag("ApiTests")
     @Step("Запрос пользователя по несуществующему id")
     void getNotFoundUserTest() {
         ErrorResponse response = given(CustomSpec.requestSpec)
-                .pathParam("id", TestData.invalidUserId)
+                .pathParam("id", TestData.getInvalidUserId())
                 .log().uri()
                 .when()
                 .get(UserEndpoints.SINGLE_USER.getEndpoint())
                 .then()
-                .spec(responseSpec404)
+                .spec(buildResponseSpec(404))
                 .extract().as(ErrorResponse.class);
 
         checkErrorResponse(response);
@@ -92,6 +88,6 @@ public class GetUserTests extends TestBase {
 
     @Step("Проверка отображения ошибки 404")
     private void checkErrorResponse(ErrorResponse response) {
-        assertThat(response.getError()).isEqualTo(null);
+        assertThat(response.getError()).isEqualTo(null); // Тут возможно ошибка в проверке (null?)
     }
 }
