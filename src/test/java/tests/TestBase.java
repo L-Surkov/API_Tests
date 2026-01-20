@@ -6,7 +6,8 @@ import io.restassured.http.Header;
 import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
-    public static final Header header = new Header("x-api-key", "reqres_c994f6ee697f4713be5967aa59ebf87f");
+    public static final String API_KEY = System.getenv("API_KEY");
+    public static final Header header = new Header("x-api-key", API_KEY);
     @BeforeAll
     public static void setupEnvironment() {
         RestAssured.baseURI = "https://reqres.in";
