@@ -34,6 +34,7 @@ ____
 <a href="ht[images](images)tps://github.com/allure-framework/allure2"><img src="images/logo/Allure.svg" width="50" height="50"  alt="Allure"/></a> 
 <a href="https://qameta.io/"><img src="images/logo/Allure2.svg" width="50" height="50"  alt="Allure TestOps"/></a>   
 <a href="https://www.jenkins.io/"><img src="images/logo/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>  
+<a href="https://rest-assured.io//"><img src="images/logo/RestAssured.png" width="50" height="50"  alt="RestAssured"/></a>  
 </p>
 
 ____
