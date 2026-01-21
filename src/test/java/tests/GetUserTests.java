@@ -1,8 +1,7 @@
 package tests;
 
 import endpoints.UserEndpoints;
-import io.qameta.allure.Description;
-import io.qameta.allure.Step;
+import io.qameta.allure.*;
 import models.ErrorResponse;
 import models.User;
 import models.UserListResponse;
@@ -20,10 +19,14 @@ import static specs.CustomSpec.buildResponseSpec;
 public class GetUserTests extends TestBase {
 
     @Test
+    @Story("API получения пользователей")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("allure8")
     @Description("Отправка GET-запроса и вывод списка пользователей")
     @DisplayName("Проверка получения списка пользователей по номеру страницы")
     @Tag("ApiTests")
     @Step("Запрос списка пользователей по странице")
+
     void getListUsersTestPositive() {
         UserListResponse response = given(CustomSpec.requestSpec)
                 .queryParam("page", 1)
@@ -43,6 +46,9 @@ public class GetUserTests extends TestBase {
     }
 
     @Test
+    @Story("API получения пользователей")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("allure8")
     @Description("Отправка GET-запроса и вывод конкретного пользователя")
     @DisplayName("Получение конкретного пользователя по id")
     @Tag("ApiTests")
@@ -69,6 +75,9 @@ public class GetUserTests extends TestBase {
     }
 
     @Test
+    @Story("API получения пользователей")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("allure8")
     @Description("Отправка GET-запроса с id несуществующего пользователя")
     @DisplayName("Проверка корректной ошибки в ответе, если пользователь не найден")
     @Tag("ApiTests")

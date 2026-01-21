@@ -1,8 +1,7 @@
 package tests;
 
 import endpoints.UserEndpoints;
-import io.qameta.allure.Description;
-import io.qameta.allure.Step;
+import io.qameta.allure.*;
 import models.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -20,6 +19,9 @@ import static specs.CustomSpec.buildResponseSpec;
 public class PostUserTests extends TestBase {
 
     @Test
+    @Story("API создания и регистрации пользователей")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("allure8")
     @Description("Отправка POST-запроса и создание пользователя")
     @DisplayName("Проверка успешного создания нового пользователя")
     @Tag("ApiTests")
@@ -48,6 +50,9 @@ public class PostUserTests extends TestBase {
     }
 
     @Test
+    @Story("API создания и регистрации пользователей")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("allure8")
     @Description("Отправка POST-запроса и регистрация нового пользователя")
     @DisplayName("Проверка успешной регистрации нового пользователя")
     @Tag("ApiTests")
@@ -76,6 +81,9 @@ public class PostUserTests extends TestBase {
     }
 
     @Test
+    @Story("API создания и регистрации пользователей")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("allure8")
     @Description("Отправка POST-запроса и регистрация нового пользователя")
     @DisplayName("Проверка ошибки при попытке зарегистрировать пользователя без пароля")
     @Tag("ApiTests")
