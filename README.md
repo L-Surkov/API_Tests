@@ -34,6 +34,7 @@ ____
 <a href="ht[images](images)tps://github.com/allure-framework/allure2"><img src="images/logo/Allure.svg" width="50" height="50"  alt="Allure"/></a> 
 <a href="https://qameta.io/"><img src="images/logo/Allure2.svg" width="50" height="50"  alt="Allure TestOps"/></a>   
 <a href="https://www.jenkins.io/"><img src="images/logo/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>  
+<a href="https://rest-assured.io//"><img src="images/logo/RestAssured.png" width="50" height="50"  alt="RestAssured"/></a>  
 </p>
 
 ____
@@ -49,34 +50,28 @@ ____
 
 ____
 <a id="jenkins"></a>
-## <img alt="Jenkins" height="25" src="images/logo/Jenkins.svg" width="25"/></a><a name="Сборка"></a>Сборка в [Jenkins](https://jenkins.autotests.cloud/job/038-L_Surkov-JenkinsDemoQA_lesson12/)</a>
+## <img alt="Jenkins" height="25" src="images/logo/Jenkins.svg" width="25"/></a><a name="Сборка"></a>Сборка в [Jenkins](https://jenkins.autotests.cloud/job/038-L_Surkov-JenkinsQAGuru_API_Tests/)</a>
 ____
 <p align="center">  
-<a href="https://jenkins.autotests.cloud/job/038-L_Surkov-JenkinsDemoQA_lesson12/"><img src="images/screen/jenkins_build.png" alt="Jenkins" width="950"/></a>  
+<a href="https://jenkins.autotests.cloud/job/038-L_Surkov-JenkinsQAGuru_API_Tests/"><img src="images/screen/jenkins_build.png" alt="Jenkins" width="950"/></a>  
 </p>
 
 
 ### **Параметры сборки в Jenkins:**
 
-- *browser (браузер, по умолчанию chrome)*
-- *browserVersion (версия браузера, по умолчанию 100.0)*
-- *browserSize (размер окна браузера, по умолчанию 1920x1080)*
+- *ENVIRONMENT (тестовая среда, по умолчанию Test)*
 
 <a id="console"></a>
 ## Команды для запуска из терминала
 ___
 ***Локальный запуск:***
 ```bash  
-gradle clean mkb_test
+gradle clean executeApiTests
 ```
 
 ***Удалённый запуск через Jenkins:***
 ```bash  
-clean mkb_test
-"-Dbrowser=${browser}"
-"-DbrowserVersion=${browserVersion}"
-"-DbrowserSize=${browserSize}"
-"-Dremote="https://user1:1234@selenoid.autotests.cloud/wd/hub"*
+clean executeApiTests
 ```
 ___
 <a id="allure"></a>
