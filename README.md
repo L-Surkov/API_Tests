@@ -78,7 +78,7 @@ clean executeApiTests
 ```
 ___
 <a id="allure"></a>
-## <img alt="Allure" height="25" src="images/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [отчет](https://jenkins.autotests.cloud/job/038-L_Surkov-JenkinsQAGuru_API_Tests/3/allure/#suites/7196948cf71fab84fe611f2d1c923336/628b9aa772fbdc4c/)</a>
+## <img alt="Allure" height="25" src="images/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [отчет](https://jenkins.autotests.cloud/job/038-L_Surkov-JenkinsQAGuru_API_Tests/3/allure/)</a>
 ___
 
 ### *Основная страница отчёта*
