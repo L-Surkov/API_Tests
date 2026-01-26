@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
@@ -8,4 +9,6 @@ public class CreateUserResponse {
     private String job;
     private String id;
     private String createdAt;
+    @JsonProperty("_meta")
+    private Meta meta;
 }

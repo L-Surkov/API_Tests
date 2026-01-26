@@ -26,7 +26,6 @@ public class GetUserTests extends TestBase {
     @DisplayName("Проверка получения списка пользователей по номеру страницы")
     @Tag("ApiTests")
     @Step("Запрос списка пользователей по странице")
-
     void getListUsersTestPositive() {
         UserListResponse response = given(CustomSpec.requestSpec)
                 .queryParam("page", 1)
