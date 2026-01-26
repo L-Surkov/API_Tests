@@ -60,6 +60,7 @@ ____
 ### **Параметры сборки в Jenkins:**
 
 - *ENVIRONMENT (тестовая среда, по умолчанию Test)*
+- *API_KEY (уникальный токен из ReqRes)*
 
 <a id="console"></a>
 ## Команды для запуска из терминала
@@ -67,11 +68,13 @@ ___
 ***Локальный запуск:***
 ```bash  
 gradle clean executeApiTests
+-Dapi.key="токен"
 ```
 
 ***Удалённый запуск через Jenkins:***
 ```bash  
 clean executeApiTests
+-Dapi.key="${API_KEY}"
 ```
 ___
 <a id="allure"></a>
