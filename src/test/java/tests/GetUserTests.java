@@ -70,21 +70,30 @@ public class GetUserTests extends TestBase {
     @Story("API получения пользователей")
     @Severity(SeverityLevel.CRITICAL)
     @Owner("allure8")
-    @Description("Отправка GET-запроса с id несуществующего пользователя")
     @DisplayName("Ошибка в ответе, если пользователь не найден")
     @Tag("ApiTests")
     void getNotFoundUserTest() {
-        ErrorResponse response = step("Запрос пользователя по несуществующему id", () -> given(CustomSpec.requestSpec)
-                .pathParam("id", TestData.getInvalidUserId())
-                .log().uri()
-                .when()
-                .get(UserEndpoints.SINGLE_USER.getEndpoint())
-                .then()
-                .spec(buildResponseSpec(404))
-                .extract().as(ErrorResponse.class));
+        ErrorResponse response = step("Запрос пользователя по несуществующему id", () ->
+                given(CustomSpec.requestSpec)
+                        .pathParam("id", TestData.getInvalidUserId())
+                        .log().uri()
+                        .when()
+                        .get(UserEndpoints.SINGLE_USER.getEndpoint())
+                        .then()
+                        .spec(buildResponseSpec(404))
+                        .extract().as(ErrorResponse.class)
+        );
 
-        step("Проверка: ответ пустой (ошибка 404)", () -> {
-            assertThat(response.getError()).isNull();
+        step("Проверить, что объект ErrorResponse был создан (тело ответа не пустое)", () -> {
+            assertThat(response)
+                    .as("Объект ошибки должен быть создан даже при 404 — тело ответа не пустое")
+                    .isNotNull();
+        });
+
+        step("Проверить, что поле error отсутствует (или null)", () -> {
+            assertThat(response.getError())
+                    .as("Поле 'error' должно быть null при 404")
+                    .isNull();
         });
     }
 }
