@@ -5,7 +5,8 @@ public enum UserEndpoints {
     LIST_USERS("/users"),
     SINGLE_USER("/users/{id}"),
     CREATE_USER("/users"),
-    REGISTER_USER("/register");
+    REGISTER_USER("/register"),
+    DELETE_USER("/users/{id}");
 
     private final String endpoint;
 
