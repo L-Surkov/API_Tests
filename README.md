@@ -78,7 +78,7 @@ clean executeApiTests
 ```
 ___
 <a id="allure"></a>
-## <img alt="Allure" height="25" src="images/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [отчет](https://jenkins.autotests.cloud/job/Kod3ik_qa_guru_x5/allure/)</a>
+## <img alt="Allure" height="25" src="images/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [отчет](https://jenkins.autotests.cloud/job/038-L_Surkov-JenkinsQAGuru_API_Tests/3/allure/)</a>
 ___
 
 ### *Основная страница отчёта*
@@ -97,9 +97,17 @@ ___
 
   <p align="center">  
 <img title="Allure Graphics" src="images/screen/allure_graths.png" width="850">
-
-<img title="Allure Graphics" src="images/screen/graphs.png" width="850">  
 </p>
+
+____
+
+<a id="allure-testops"></a>
+## <img alt="TestOps" height="25" src="images/logo/TestOps_logo_2.png" width="25"/></a> <a name="TestOps"></a>Интеграция с Allure TestOps [проект](https://allure.autotests.cloud/launch/51036/tree?search=W3siaWQiOiJzdGF0dXMiLCJ0eXBlIjoidGVzdFN0YXR1c0FycmF5IiwidmFsdWUiOlsicGFzc2VkIl19XQ%3D%3D&treeId=0)</a>
+___
+<p align="center">  
+<img title="Allure TestOps Overview Dashboard" src="images/screen/testops.png" width="850">  
+</p>
+
 
 ____
 <a id="telegram"></a>
@@ -109,11 +117,4 @@ ____
 <img title="Allure Overview Dashboard" src="images/screen/telegram.png" width="550">  
 </p>
 
-____
-<a id="video"></a>
-## <img alt="Selenoid" height="25" src="images/logo/Selenoid.svg" width="25"/></a> Примеры видео выполнения тестов на Selenoid
-____
-<p align="center">
-<img title="Selenoid Video" src="images/video/mkb.gif" width="550" height="350"  alt="video">   
-</p>
 
