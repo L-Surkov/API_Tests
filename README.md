@@ -79,7 +79,7 @@ clean executeApiTests
 ```
 ___
 <a id="allure"></a>
-## <img alt="Allure" height="25" src="images/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [отчет](https://jenkins.autotests.cloud/job/038-L_Surkov-JenkinsQAGuru_API_Tests/3/allure/)</a>
+## <img alt="Allure" height="25" src="images/logo/Allure.svg" width="25"/></a> <a name="Allure"></a>Allure [отчет](https://jenkins.autotests.cloud/job/038-L_Surkov-JenkinsQAGuru_API_Tests/4/allure/)</a>
 ___
 
 ### *Основная страница отчёта*
@@ -103,7 +103,7 @@ ___
 ____
 
 <a id="allure-testops"></a>
-## <img alt="TestOps" height="25" src="images/logo/TestOps_logo_2.png" width="25"/></a> <a name="TestOps"></a>Интеграция с Allure TestOps [проект](https://allure.autotests.cloud/launch/51036/tree?search=W3siaWQiOiJzdGF0dXMiLCJ0eXBlIjoidGVzdFN0YXR1c0FycmF5IiwidmFsdWUiOlsicGFzc2VkIl19XQ%3D%3D&treeId=0)</a>
+## <img alt="TestOps" height="25" src="images/logo/TestOps_logo_2.png" width="25"/></a> <a name="TestOps"></a>Интеграция с Allure TestOps [проект](https://allure.autotests.cloud/launch/51075/tree/760195?search=W3siaWQiOiJzdGF0dXMiLCJ0eXBlIjoidGVzdFN0YXR1c0FycmF5IiwidmFsdWUiOlsicGFzc2VkIl19XQ%3D%3D&treeId=0)</a>
 ___
 <p align="center">  
 <img title="Allure TestOps Overview Dashboard" src="images/screen/testops.png" width="850">  
